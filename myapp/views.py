@@ -26,14 +26,15 @@ def monthly_challenge_by_number(request, month):
         return HttpResponseNotFound("Invalid Month")
 
     redirect_month = months[month - 1]
-    redirect_path = reverse("myapp",args=[redirect_month])
+    redirect_path = reverse("my-app",args=[redirect_month])   #/myapp/january "my-app"-->myapp////args-->/month
     return HttpResponseRedirect(redirect_path)
 
 
 def monthly_challenge(request,month):
     try:
         challenge_text = monthly_challenges[month]
-        return HttpResponse(challenge_text)
+        response_data = f"<h1>{challenge_text}</h1>"
+        return HttpResponse(response_data)
     except:
         return HttpResponseNotFound("This is not found")      
     
